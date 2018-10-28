@@ -1,5 +1,5 @@
 {
-  "name": "com.eclipsesource.tabris.launchparameters.demoapp",
+  "name": "com.eclipsesource.tabris.launchmonitor.demoapp",
   "version": "0.1.0",
   "main": "dist/app.js",
   "private": true,
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.1.3",
+    "tabris-plugin-launchparameters": "file:..",
     "tslint": "^5.11.0",
     "typescript": "^3.1.3"
   }

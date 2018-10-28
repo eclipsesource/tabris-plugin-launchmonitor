@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="tabris-plugin-launchparameters"
+        id="tabris-plugin-launchmonitor"
         version="0.1.0">
 
   <name>Tabris.js launch parameters plugin</name>
@@ -11,35 +11,33 @@
   <repo>https://github.com/eclipsesource/tabris-plugin-launchparameters.git</repo>
   <issue>https://github.com/eclipsesource/tabris-plugin-launchparameters/issues</issue>
 
-  <js-module src="www/LaunchParameters.js">
-    <clobbers target="esutils.getUrlLaunchParameters" />
+  <js-module src="www/LaunchMonitor.js">
+    <clobbers target="esutils.LaunchMonitor" />
   </js-module>
 
   <platform name="ios">
     <config-file target="*TabrisPlugins.plist" parent="classes">
     	<array>
-	    	<string>ESLaunchParameters</string>
+	    	<string>ESLaunchMonitor</string>
     	</array>
     </config-file>
     <hook type="after_plugin_install" src="scripts/ios/setup.js" />
-    <header-file src="src/ios/ESLaunchParameters.h" />
-    <source-file src="src/ios/ESLaunchParameters.m" />
+    <header-file src="src/ios/ESLaunchMonitor.h" />
+    <source-file src="src/ios/ESLaunchMonitor.m" />
   </platform>
 
 
   <platform name="android">
     <hook type="after_plugin_install" src="scripts/android/setup.js" />
-    <source-file src="src/android/com/eclipsesource/tabris/launchparameters/LaunchParametersOperator.kt"
-                 target-dir="src/com/eclipsesource/tabris/launchparameters" />
-    <source-file src="src/android/com/eclipsesource/tabris/launchparameters/LaunchParametersPropertyHandler.kt"
-                 target-dir="src/com/eclipsesource/tabris/launchparameters" />
-    <source-file src="src/android/com/eclipsesource/tabris/launchparameters/LaunchParameters.kt"
-                 target-dir="src/com/eclipsesource/tabris/launchparameters" />
+    <source-file src="src/android/com/eclipsesource/tabris/launchmonitor/LaunchMonitorOperator.kt"
+                 target-dir="src/com/eclipsesource/tabris/launchmonitor" />
+    <source-file src="src/android/com/eclipsesource/tabris/launchmonitor/LaunchMonitor.kt"
+                 target-dir="src/com/eclipsesource/tabris/launchmonitor" />
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <meta-data
-          android:name="com.eclipsesource.tabris.android.OPERATOR.com.eclipsesource.launchparams"
-          android:value="com.eclipsesource.tabris.launchparameters.LaunchParametersOperator" />
+          android:name="com.eclipsesource.tabris.android.OPERATOR.com.eclipsesource.launchmonitor"
+          android:value="com.eclipsesource.tabris.launchmonitor.LaunchMonitorOperator" />
     </config-file>
   </platform>
 

@@ -1,14 +1,28 @@
-package com.eclipsesource.tabris.launchparameters
+package com.eclipsesource.tabris.launchmonitor
 
 import android.app.Activity
 import android.net.Uri
+import android.os.Handler;
 import com.eclipsesource.tabris.android.TabrisActivity
+import com.eclipsesource.tabris.android.TabrisContext
 import java.net.URLDecoder
+import java.util.*
 
-class LaunchParameters(activity: Activity) {
+private const val EVENT_URL_LAUNCH = "urlLaunch"
+private const val PROP_QUERY_PARAMETERS = "queryParameters"
+
+class LaunchMonitor(activity: Activity, tabrisContext: TabrisContext) {
 
   private val launchUri = (activity as TabrisActivity).intentOfCreate.getStringExtra("launchUri")
-  val urlLaunchParameters = parseQuery(launchUri)
+  private val queryParameters = parseQuery(launchUri)
+
+  init {
+    Handler().post {
+      if (queryParameters != null) {
+        tabrisContext.objectRegistry.getRemoteObjectForObject(this).notify(EVENT_URL_LAUNCH, PROP_QUERY_PARAMETERS, queryParameters)
+      }
+    }
+  }
 
   private fun parseQuery(url:String?):Map<String, String>? {
     if (url == null) return null

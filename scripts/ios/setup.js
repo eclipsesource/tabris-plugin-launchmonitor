@@ -28,8 +28,8 @@ if (rootdir) {
     var updateIOSAppDelegate = function() {
       var appDelegate = getProjectFile("ios", "Classes/AppDelegate.m");
       var importReplace = "/* HOOK: import classes for registration */";
-      replace(appDelegate, importReplace, "#import \"ESLaunchParameters.h\"\n" + importReplace);
-      replace(appDelegate, "@end", "- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {" + "\n\t" + "[ESLaunchParameters setURL:url];" + "\n\t" + "return YES;\n}" + "\n\n" + "@end")
+      replace(appDelegate, importReplace, "#import \"ESLaunchMonitor.h\"\n" + importReplace);
+      replace(appDelegate, "@end", "- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {" + "\n\t" + "[ESLaunchMonitor didOpenByURL:url];" + "\n\t" + "return YES;\n}" + "\n\n" + "@end")
     };
 
     updateIOSAppDelegate();

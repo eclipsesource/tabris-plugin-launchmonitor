@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.eclipsesource.tabris.launchparameters.demoapp" version="0.1.0">
+<widget id="com.eclipsesource.tabris.launchmonitor.demoapp" version="0.1.0">
   <name>Tabris.js Launch Parameters Plugin Demo</name>
 
   <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
-  <plugin name="tabris-plugin-launchparameters" spec="../" />
+  <plugin name="tabris-plugin-launchmonitor" spec="../" />
   <plugin name="cordova-plugin-customurlscheme" spec="4.3.0">
     <variable name="URL_SCHEME" value="testapp" />
   </plugin>
