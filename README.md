@@ -6,7 +6,7 @@ Can be used in conjunction with the [`cordova-plugin-customurlscheme`](https://g
 
 # Supported platforms
 
-iOS
+Android, iOS
 
 # Usage
 

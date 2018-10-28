@@ -21,9 +21,26 @@
 	    	<string>ESLaunchParameters</string>
     	</array>
     </config-file>
-    <hook type="after_plugin_install" src="scripts/ios/custom-widget.js" />
+    <hook type="after_plugin_install" src="scripts/ios/setup.js" />
     <header-file src="src/ios/ESLaunchParameters.h" />
     <source-file src="src/ios/ESLaunchParameters.m" />
+  </platform>
+
+
+  <platform name="android">
+    <hook type="after_plugin_install" src="scripts/android/setup.js" />
+    <source-file src="src/android/com/eclipsesource/tabris/launchparameters/LaunchParametersOperator.kt"
+                 target-dir="src/com/eclipsesource/tabris/launchparameters" />
+    <source-file src="src/android/com/eclipsesource/tabris/launchparameters/LaunchParametersPropertyHandler.kt"
+                 target-dir="src/com/eclipsesource/tabris/launchparameters" />
+    <source-file src="src/android/com/eclipsesource/tabris/launchparameters/LaunchParameters.kt"
+                 target-dir="src/com/eclipsesource/tabris/launchparameters" />
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <meta-data
+          android:name="com.eclipsesource.tabris.android.OPERATOR.com.eclipsesource.launchparams"
+          android:value="com.eclipsesource.tabris.launchparameters.LaunchParametersOperator" />
+    </config-file>
   </platform>
 
 </plugin>
