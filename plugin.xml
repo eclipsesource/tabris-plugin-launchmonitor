@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="tabris-plugin-launchparameters"
+        version="0.1.0">
+
+  <name>Tabris.js launch parameters plugin</name>
+  <description>Read parameters passed when launching the app from an URL.</description>
+  <author>EclipseSource</author>
+  <license>Revised BSD License (3-clause license)</license>
+  <repo>https://github.com/eclipsesource/tabris-plugin-launchparameters.git</repo>
+  <issue>https://github.com/eclipsesource/tabris-plugin-launchparameters/issues</issue>
+
+  <js-module src="www/LaunchParameters.js">
+    <clobbers target="esutils.getUrlLaunchParameters" />
+  </js-module>
+
+  <platform name="ios">
+    <config-file target="*TabrisPlugins.plist" parent="classes">
+    	<array>
+	    	<string>ESLaunchParameters</string>
+    	</array>
+    </config-file>
+    <hook type="after_plugin_install" src="scripts/ios/custom-widget.js" />
+    <header-file src="src/ios/ESLaunchParameters.h" />
+    <source-file src="src/ios/ESLaunchParameters.m" />
+  </platform>
+
+</plugin>
