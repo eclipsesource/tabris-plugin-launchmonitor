@@ -1,0 +1,32 @@
+{
+  "name": "tabris-plugin-launchparameters",
+  "version": "0.1.0",
+  "description": "Read parameters passed when launching the app from an URL.",
+  "types": "./types/index.d.ts",
+  "peerDependencies": {
+    "tabris": "~2.6.2"
+  },
+  "cordova": {
+    "id": "tabris-plugin-launchparameters",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eclipsesource/tabris-plugin-launchparameters.git"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.8.0"
+    }
+  ],
+  "author": "EclipseSource",
+  "license": "Revised BSD License (3-clause license)",
+  "bugs": {
+    "url": "https://github.com/eclipsesource/tabris-plugin-launchparameters/issues"
+  },
+  "homepage": "https://github.com/eclipsesource/tabris-plugin-launchparameters#readme"
+}

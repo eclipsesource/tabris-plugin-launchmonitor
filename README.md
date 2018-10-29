@@ -4,22 +4,29 @@ Reads parameters of a URL used to launch a Tabris.js app.
 
 Can be used in conjunction with the [`cordova-plugin-customurlscheme`](https://github.com/EddyVerbruggen/Custom-URL-scheme) plugin and [`app.launch(url)`](http://docs.tabris.com/latest/api/app.html#launchurl).
 
-# Supported platforms
+## Supported platforms
 
 Android, iOS
 
-# Usage
+## API documentation
 
-## App 1:
+### `eslaunchmonitor`
 
-**JS**
-```js
-import {app} from 'tabris';
+#### Events
 
-app.launch('testapp://?foo=bar');
-```
+##### `urlLaunch`
 
-## App 2:
+* The `urlLaunch` event is fired when the app has been launched through a URL.
+
+###### Event Parameters:
+
+* `target` : _eslaunchmonitor_
+* `queryParameters`: _{[key: string]: any}_
+  * Query parameters, parsed from the URL.
+
+## Usage
+
+### App 1:
 
 **config.xml**
 ```xml
@@ -30,5 +37,16 @@ app.launch('testapp://?foo=bar');
 
 **JS**
 ```js
-esutils.getUrlLaunchParameters(); // {foo: 'bar'}
+eslaunchmonitor.on({urlLaunch: ({queryParameters}) => {
+  console.log(queryParameters); // {foo: 'bar'}
+}})
+```
+
+### App 2:
+
+**JS**
+```js
+import {app} from 'tabris';
+
+app.launch('testapp://?foo=bar');
 ```

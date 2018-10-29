@@ -13,20 +13,21 @@ private const val PROP_QUERY_PARAMETERS = "queryParameters"
 
 class LaunchMonitor(activity: Activity, tabrisContext: TabrisContext) {
 
-  private val launchUri = (activity as TabrisActivity).intentOfCreate.getStringExtra("launchUri")
-  private val queryParameters = parseQuery(launchUri)
 
   init {
+    val launchUri = (activity as TabrisActivity).intentOfCreate.getStringExtra("launchUri")
+    val queryParameters = parseQuery(launchUri)
     Handler().post {
-      if (queryParameters != null) {
+      if (launchUri != null) {
         tabrisContext.objectRegistry.getRemoteObjectForObject(this).notify(EVENT_URL_LAUNCH, PROP_QUERY_PARAMETERS, queryParameters)
       }
     }
   }
 
   private fun parseQuery(url:String?):Map<String, String>? {
-    if (url == null) return null
+    if (url == null) return HashMap<String, String>()
     val launchUri = Uri.parse(url)
+    if (launchUri.query == null) return HashMap<String, String>()
     val result = HashMap<String, String>()
     val pairs = launchUri.query.split("&").dropLastWhile { it.isEmpty() }.toTypedArray()
     pairs.forEach {
