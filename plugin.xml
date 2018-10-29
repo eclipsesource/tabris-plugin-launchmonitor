@@ -4,12 +4,12 @@
         id="tabris-plugin-launchmonitor"
         version="0.1.0">
 
-  <name>Tabris.js launch parameters plugin</name>
-  <description>Read parameters passed when launching the app from an URL.</description>
+  <name>Tabris.js launch monitor plugin</name>
+  <description>React on Tabris.js app launch and read launch parameters.</description>
   <author>EclipseSource</author>
   <license>Revised BSD License (3-clause license)</license>
-  <repo>https://github.com/eclipsesource/tabris-plugin-launchparameters.git</repo>
-  <issue>https://github.com/eclipsesource/tabris-plugin-launchparameters/issues</issue>
+  <repo>https://github.com/eclipsesource/tabris-plugin-launchmonitor.git</repo>
+  <issue>https://github.com/eclipsesource/tabris-plugin-launchmonitor/issues</issue>
 
   <js-module src="www/LaunchMonitor.js">
     <clobbers target="eslaunchmonitor" />

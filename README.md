@@ -1,6 +1,6 @@
-# Tabris.js Launch Parameters Plugin
+# Tabris.js Launch Monitor Plugin
 
-Reads parameters of a URL used to launch a Tabris.js app.
+React on Tabris.js app launch and read launch parameters. Currently only launch by URL is supported.
 
 Can be used in conjunction with the [`cordova-plugin-customurlscheme`](https://github.com/EddyVerbruggen/Custom-URL-scheme) plugin and [`app.launch(url)`](http://docs.tabris.com/latest/api/app.html#launchurl).
 

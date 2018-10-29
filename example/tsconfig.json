@@ -13,6 +13,6 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
-    "./node_modules/tabris-plugin-launchparameters/types/index.d.ts"
+    "./node_modules/tabris-plugin-launchmonitor/types/index.d.ts"
   ]
 }

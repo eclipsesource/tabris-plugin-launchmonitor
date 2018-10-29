@@ -1,13 +1,13 @@
 {
-  "name": "tabris-plugin-launchparameters",
+  "name": "tabris-plugin-launchmonitor",
   "version": "0.1.0",
-  "description": "Read parameters passed when launching the app from an URL.",
+  "description": "React on Tabris.js app launch and read launch parameters.",
   "types": "./types/index.d.ts",
   "peerDependencies": {
     "tabris": "~2.6.2"
   },
   "cordova": {
-    "id": "tabris-plugin-launchparameters",
+    "id": "tabris-plugin-launchmonitor",
     "platforms": [
       "android",
       "ios"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eclipsesource/tabris-plugin-launchparameters.git"
+    "url": "git+https://github.com/eclipsesource/tabris-plugin-launchmonitor.git"
   },
   "engines": [
     {
@@ -26,7 +26,7 @@
   "author": "EclipseSource",
   "license": "Revised BSD License (3-clause license)",
   "bugs": {
-    "url": "https://github.com/eclipsesource/tabris-plugin-launchparameters/issues"
+    "url": "https://github.com/eclipsesource/tabris-plugin-launchmonitor/issues"
   },
-  "homepage": "https://github.com/eclipsesource/tabris-plugin-launchparameters#readme"
+  "homepage": "https://github.com/eclipsesource/tabris-plugin-launchmonitor#readme"
 }
