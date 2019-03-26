@@ -9,7 +9,6 @@ import java.net.URLDecoder
 import java.util.*
 
 private const val EVENT_URL_LAUNCH = "urlLaunch"
-private const val PROP_QUERY_PARAMETERS = "queryParameters"
 
 class LaunchMonitor(activity: Activity, tabrisContext: TabrisContext) {
 
@@ -17,9 +16,10 @@ class LaunchMonitor(activity: Activity, tabrisContext: TabrisContext) {
   init {
     val launchUri = (activity as TabrisActivity).intentOfCreate.getStringExtra("launchUri")
     val queryParameters = parseQuery(launchUri)
+    val urlLaunchParameters = mapOf("queryParameters" to queryParameters, "url" to launchUri);
     Handler().post {
       if (launchUri != null) {
-        tabrisContext.objectRegistry.getRemoteObjectForObject(this).notify(EVENT_URL_LAUNCH, PROP_QUERY_PARAMETERS, queryParameters)
+        tabrisContext.objectRegistry.getRemoteObjectForObject(this).notify(EVENT_URL_LAUNCH, urlLaunchParameters)
       }
     }
   }

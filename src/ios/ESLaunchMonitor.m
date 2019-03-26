@@ -29,7 +29,7 @@ static ESLaunchMonitor *instance;
     }
     if (self.urlLaunchListener) {
         Message<Notification> *message = [[self notifications] forObject:self];
-        [message fireEvent:@"urlLaunch" withAttributes:@{@"queryParameters":queryParameters}];
+        [message fireEvent:@"urlLaunch" withAttributes:@{@"queryParameters":queryParameters, @"url": [url absoluteString]}];
     }
 }
 

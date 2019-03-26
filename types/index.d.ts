@@ -5,6 +5,7 @@ interface LaunchEvents {
 }
 interface UrlLaunchParameters {
   queryParameters: {[key: string]: any};
+  url: string;
 }
 interface MessageEvent extends EventObject<LaunchMonitor> {}
 interface MessageEvent extends UrlLaunchParameters {}

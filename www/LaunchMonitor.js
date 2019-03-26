@@ -15,7 +15,7 @@ LaunchMonitor.prototype._listen = function(name, listening) {
 
 LaunchMonitor.prototype._trigger = function(name, event) {
   if (name === URL_LAUNCH_EVENT) {
-    urlLaunchParameters = {queryParameters: event.queryParameters};
+    urlLaunchParameters = {queryParameters: event.queryParameters, url: event.url};
   }
   tabris.Widget.prototype._trigger.call(this, name, event);
 };
