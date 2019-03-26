@@ -3,9 +3,11 @@ import { EventObject } from 'tabris';
 interface LaunchEvents {
   urlLaunch?(event: MessageEvent): void;
 }
-interface MessageEvent extends EventObject<LaunchMonitor> {
+interface UrlLaunchParameters {
   queryParameters: {[key: string]: any};
 }
+interface MessageEvent extends EventObject<LaunchMonitor> {}
+interface MessageEvent extends UrlLaunchParameters {}
 
 interface LaunchMonitor {
   on(type: string, listener: (event: any) => void, context?: object): this;
@@ -14,6 +16,7 @@ interface LaunchMonitor {
   off(listeners: LaunchEvents): this;
   once(type: string, listener: (event: any) => void, context?: object): this;
   once(listeners: LaunchEvents): this;
+  urlLaunchParameters: UrlLaunchParameters
 }
 declare global {
   var eslaunchmonitor: LaunchMonitor;
