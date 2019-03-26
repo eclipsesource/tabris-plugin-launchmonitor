@@ -4,15 +4,14 @@ ui.contentView.append(
   <widgetCollection>
     <textView markupEnabled
       centerX={0} centerY={0}
-      font='24px'
+      font='16px'
       text='Awaiting launch by URL...' />
     <button bottom={16} left={16} right={16} text='Log urlLaunchParameters'
       onSelect={() => console.log(JSON.stringify(eslaunchmonitor.urlLaunchParameters))} />
   </widgetCollection>
 );
 
-eslaunchmonitor.on({urlLaunch: ({queryParameters}) => {
-  let params = (JSON.stringify(queryParameters, null, 2) || 'undefined').replace(/\n/g, '<br/>');
-  ui.find(TextView).first(TextView).text = `Launch parameters: <br/><b>${params}</b>`
-  console.log('"urlLaunch" queryParameters: ' + JSON.stringify(queryParameters));
+eslaunchmonitor.on({urlLaunch: ({queryParameters, url}) => {
+  ui.find(TextView).first(TextView).text = `Url: <br/><b>${url}</b><br/><br/>Query parameters: <br/><b>${JSON.stringify(queryParameters)}</b>`
+  console.log('"urlLaunch" parameters: ' + JSON.stringify({queryParameters, url}));
 }});
