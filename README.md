@@ -21,8 +21,16 @@ Android, iOS
 ###### Event Parameters:
 
 * `target` : _eslaunchmonitor_
+* `url`: _string_
+  * The URL the app was launched through.
 * `queryParameters`: _{[key: string]: any}_
   * Query parameters, parsed from the URL.
+
+#### Properties
+
+##### `urlLaunchParameters` : _{url: string, queryParameters: {[key: string]: any}}_
+
+The most recently used parameters to launch the app by URL. Particularly useful when the `urlLaunch` event listener cannot be registered early enough to handle the first triggered event.
 
 ## Usage
 
@@ -37,7 +45,8 @@ Android, iOS
 
 **JS**
 ```js
-eslaunchmonitor.on({urlLaunch: ({queryParameters}) => {
+eslaunchmonitor.on({urlLaunch: ({url, queryParameters}) => {
+  console.log(url); // testapp://?foo=bar
   console.log(queryParameters); // {foo: 'bar'}
 }})
 ```
