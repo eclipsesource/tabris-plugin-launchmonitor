@@ -1,27 +1,40 @@
 package com.eclipsesource.tabris.launchmonitor
 
-import android.app.Activity
+import android.content.Intent
+import com.eclipsesource.tabris.android.*
 import android.net.Uri
 import android.os.Handler;
-import com.eclipsesource.tabris.android.TabrisActivity
-import com.eclipsesource.tabris.android.TabrisContext
 import java.net.URLDecoder
 import java.util.*
 
 private const val EVENT_URL_LAUNCH = "urlLaunch"
 
-class LaunchMonitor(activity: Activity, tabrisContext: TabrisContext) {
-
+class LaunchMonitor(scope: ActivityScope) {
 
   init {
-    val launchUri = (activity as TabrisActivity).intentOfCreate.getStringExtra("launchUri")
-    val queryParameters = parseQuery(launchUri)
-    val urlLaunchParameters = mapOf("queryParameters" to queryParameters, "url" to launchUri);
     Handler().post {
-      if (launchUri != null) {
-        tabrisContext.objectRegistry.getRemoteObjectForObject(this).notify(EVENT_URL_LAUNCH, urlLaunchParameters)
+      if (scope.activity.intent.dataString != null) {
+        notifyUrlLaunch(scope, scope.activity.intent)
       }
     }
+    (scope.activity.supportFragmentManager.findFragmentByTag(TabrisFragment::class.java.name) as? TabrisFragment)
+      ?.scope?.events?.addActivityStateListener(object : Events.ActivityStateListener {
+      override fun activityStateChanged(state: ActivityState, intent: Intent?) {
+        when (state) {
+          ActivityState.NEW_INTENT -> notifyUrlLaunch(scope, intent)
+        }
+      }
+    })
+  }
+
+  private fun notifyUrlLaunch(scope: ActivityScope, intent: Intent?) {
+    if (intent == null || intent.dataString == null) {
+      return
+    }
+    val launchUri = intent.dataString
+    val queryParameters = parseQuery(launchUri)
+    val urlLaunchParameters = mapOf("queryParameters" to queryParameters, "url" to launchUri);
+    scope.objectRegistry.findRemoteObject(this)?.notify(EVENT_URL_LAUNCH, urlLaunchParameters)
   }
 
   private fun parseQuery(url:String?):Map<String, String>? {

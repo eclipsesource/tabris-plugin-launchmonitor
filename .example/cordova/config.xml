@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.eclipsesource.tabris.launchmonitor.demoapp" version="1.0.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>Tabris.js Launch Monitor Plugin Demo</name>
+
+  <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
+  <plugin name="tabris-plugin-launchmonitor" spec="../" />
+  <preference name="AndroidLaunchMode" value="singleTask"/>
+  <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>testapp</string>
+        </array>
+      </dict>
+    </array>
+  </config-file>
+  <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
+    <intent-filter>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="testapp"/>
+    </intent-filter>
+  </config-file>
+</widget>
