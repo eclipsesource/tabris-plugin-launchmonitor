@@ -1,10 +1,11 @@
 #import "ESLaunchMonitor.h"
+#import <Tabris/PublicTypes.h>
 
 @implementation ESLaunchMonitor
 static ESLaunchMonitor *instance;
 
-- (instancetype) initWithObjectId:(NSString *)objectId properties:(NSDictionary *)properties andClient:(TabrisClient *)client {
-    self = [super initWithObjectId:objectId andClient:client];
+- (instancetype) initWithObjectId:(NSString *)objectId properties:(NSDictionary *)properties inContext:(id<TabrisContext>)context {
+    self = [super initWithObjectId:objectId properties:properties inContext:context];
     if (self) {
         instance = self;
     }
@@ -28,17 +29,12 @@ static ESLaunchMonitor *instance;
         [queryParameters setObject:[queryItem value] forKey:[queryItem name]];
     }
     if (self.urlLaunchListener) {
-        Message<Notification> *message = [[self notifications] forObject:self];
-        [message fireEvent:@"urlLaunch" withAttributes:@{@"queryParameters":queryParameters, @"url": [url absoluteString]}];
+        [self fireEventNamed:@"urlLaunch" withAttributes:@{@"queryParameters":queryParameters, @"url": [url absoluteString]}];
     }
 }
 
 + (void)didOpenByURL:(NSURL *)url {
     [instance sendURLLaunch: url];
-}
-
-- (UIView *)view {
-    return nil;
 }
 
 @end
