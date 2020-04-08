@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="tabris-plugin-launchmonitor"
-        version="0.1.0">
+        version="1.0.0">
 
   <name>Tabris.js launch monitor plugin</name>
   <description>React on Tabris.js app launch and read launch parameters.</description>
@@ -28,16 +28,15 @@
 
 
   <platform name="android">
-    <hook type="after_plugin_install" src="scripts/android/setup.js" />
-    <source-file src="src/android/com/eclipsesource/tabris/launchmonitor/LaunchMonitorOperator.kt"
+    <source-file src="src/android/com/eclipsesource/tabris/launchmonitor/LaunchMonitorHandler.kt"
                  target-dir="src/com/eclipsesource/tabris/launchmonitor" />
     <source-file src="src/android/com/eclipsesource/tabris/launchmonitor/LaunchMonitor.kt"
                  target-dir="src/com/eclipsesource/tabris/launchmonitor" />
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <meta-data
-          android:name="com.eclipsesource.tabris.android.OPERATOR.com.eclipsesource.launchmonitor"
-          android:value="com.eclipsesource.tabris.launchmonitor.LaunchMonitorOperator" />
+          android:name="com.eclipsesource.tabris.android.HANDLER.com.eclipsesource.launchmonitor"
+          android:value="com.eclipsesource.tabris.launchmonitor.LaunchMonitorHandler" />
     </config-file>
   </platform>
 

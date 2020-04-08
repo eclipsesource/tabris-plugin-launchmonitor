@@ -11,16 +11,9 @@ LaunchMonitor.prototype._trigger = function(name, event) {
   tabris.Widget.prototype._trigger.call(this, name, event);
 };
 
-tabris.NativeObject.defineProperties(LaunchMonitor.prototype, {
-  urlLaunchParameters: {
-    type: 'any',
-    set: function(name) {
-      console.warn(`Can not set read-only property "${name}"`)
-    },
-    get: function() {
-      return urlLaunchParameters;
-    }
-  }
+Object.defineProperty(LaunchMonitor.prototype, 'urlLaunchParameters', {
+  enumerable: true,
+  get: () => urlLaunchParameters
 })
 
 let launchMonitor = new LaunchMonitor();
