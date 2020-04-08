@@ -17,8 +17,7 @@ class LaunchMonitor(scope: ActivityScope) {
         notifyUrlLaunch(scope, scope.activity.intent)
       }
     }
-    (scope.activity.supportFragmentManager.findFragmentByTag(TabrisFragment::class.java.name) as? TabrisFragment)
-      ?.scope?.events?.addActivityStateListener(object : Events.ActivityStateListener {
+      scope.events.addActivityStateListener(object : Events.ActivityStateListener {
       override fun activityStateChanged(state: ActivityState, intent: Intent?) {
         when (state) {
           ActivityState.NEW_INTENT -> notifyUrlLaunch(scope, intent)
