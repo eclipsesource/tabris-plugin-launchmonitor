@@ -24,17 +24,18 @@ class LaunchMonitor(activity: Activity, tabrisContext: TabrisContext) {
     }
   }
 
-  private fun parseQuery(url:String?):Map<String, String>? {
+  private fun parseQuery(url: String?): Map<String, String>? {
     if (url == null) return HashMap<String, String>()
     val launchUri = Uri.parse(url)
     if (launchUri.query == null) return HashMap<String, String>()
     val result = HashMap<String, String>()
-    val pairs = launchUri.query.split("&").dropLastWhile { it.isEmpty() }.toTypedArray()
-    pairs.forEach {
-      val idx = it.indexOf("=")
-      val key = URLDecoder.decode(it.substring(0, idx), "UTF-8")
-      val value = URLDecoder.decode(it.substring(idx + 1), "UTF-8")
-      result[key] = value
+    launchUri?.query?.split("&")?.dropLastWhile { it.isEmpty() }?.toTypedArray()?.let { pairs ->
+      pairs.forEach {
+        val idx = it.indexOf("=")
+        val key = URLDecoder.decode(it.substring(0, idx), "UTF-8")
+        val value = URLDecoder.decode(it.substring(idx + 1), "UTF-8")
+        result[key] = value
+      }
     }
     return result
   }
