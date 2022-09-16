@@ -3,11 +3,11 @@ import {contentView, TextView, Button} from 'tabris';
 contentView.append(
   <$>
     <TextView markupEnabled
-      centerX={0} centerY={0}
-      font='16px'
-      text='Awaiting launch by URL...' />
+        centerX={0} centerY={0}
+        font='16px'
+        text='Awaiting launch by URL...' />
     <Button bottom={16} left={16} right={16} text='Log urlLaunchParameters'
-      onSelect={() => console.log(JSON.stringify(eslaunchmonitor.urlLaunchParameters))} />
+        onSelect={() => console.log(JSON.stringify(eslaunchmonitor.urlLaunchParameters))} />
   </$>
 );
 

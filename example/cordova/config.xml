@@ -23,4 +23,5 @@
       <data android:scheme="testapp"/>
     </intent-filter>
   </config-file>
+  <hook type="before_platform_add" src="www/app/scripts/add-plugin-from-parent-directory.sh" />
 </widget>
