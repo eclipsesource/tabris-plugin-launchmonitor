@@ -1,0 +1,11 @@
+{
+  "name": "tabris-js-app",
+  "devDependencies": {
+    "tabris-plugin-launchmonitor": "../"
+  },
+  "cordova": {
+    "plugins": {
+      "tabris-plugin-launchmonitor": {}
+    }
+  }
+}
