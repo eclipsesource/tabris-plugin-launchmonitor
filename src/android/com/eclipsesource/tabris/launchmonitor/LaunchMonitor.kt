@@ -3,7 +3,6 @@ package com.eclipsesource.tabris.launchmonitor
 import android.content.Intent
 import com.eclipsesource.tabris.android.*
 import android.net.Uri
-import android.os.Handler;
 import java.net.URLDecoder
 import java.util.*
 
@@ -12,9 +11,11 @@ private const val EVENT_URL_LAUNCH = "urlLaunch"
 class LaunchMonitor(scope: ActivityScope) {
 
   init {
-    Handler().post {
+    scope.post {
       if (scope.activity.intent.dataString != null) {
-        notifyUrlLaunch(scope, scope.activity.intent)
+        scope.handler.postDelayed({
+          notifyUrlLaunch(scope, scope.activity.intent)
+        }, 0)
       }
     }
     scope.events.addActivityStateListener(object : Events.ActivityStateListener {
