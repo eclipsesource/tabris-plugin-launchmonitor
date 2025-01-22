@@ -22,6 +22,9 @@ class LaunchMonitor(scope: ActivityScope) {
       override fun activityStateChanged(state: ActivityState, intent: Intent?) {
         when (state) {
           ActivityState.NEW_INTENT -> notifyUrlLaunch(scope, intent)
+          else -> {
+            // No action needed for other states
+          }
         }
       }
     })
